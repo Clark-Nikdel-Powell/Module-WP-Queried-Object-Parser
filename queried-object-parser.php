@@ -1,11 +1,11 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: glenn
- * Date: 12/3/15
- * Time: 11:14 AM
+ * cnp_parse_queried_object
+ *
+ * @version 0.1 - Dev release.
+ *
+ * Provides shorthand access to a standard description of the WordPress object being requested.
  */
-
 function cnp_parse_queried_object() {
 
 	$object = get_queried_object();
