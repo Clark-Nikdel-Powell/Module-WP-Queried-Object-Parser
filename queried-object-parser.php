@@ -28,13 +28,15 @@ function cnp_parse_queried_object() {
  */
 function cnp_queried_object( $type = '', $object = '', $slug = '', $ID = 0 ) {
 
-	$queried_object = [
+	$queried_array = [
 		'type'      => $type,
 		'wp_object' => $object,
 		'slug'      => $slug,
 		'ID'        => $ID
 	];
 
-	return (object) $queried_object;
+	$queried_object = apply_filters( 'cnp_queried_object_filter', (object) $queried_array );
+
+	return $queried_object;
 
 }
