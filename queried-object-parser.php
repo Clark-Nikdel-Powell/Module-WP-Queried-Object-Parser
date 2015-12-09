@@ -2,7 +2,7 @@
 /**
  * cnp_parse_queried_object
  *
- * @version 0.2 - Dev release.
+ * @version 0.3 - Dev release.
  *
  * Provides shorthand access to a standard description of the WordPress object being requested.
  */
