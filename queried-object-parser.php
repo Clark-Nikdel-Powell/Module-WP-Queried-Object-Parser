@@ -2,7 +2,7 @@
 /**
  * cnp_parse_queried_object
  *
- * @version 0.1 - Dev release.
+ * @version 0.2 - Dev release.
  *
  * Provides shorthand access to a standard description of the WordPress object being requested.
  */
@@ -14,7 +14,8 @@ function cnp_parse_queried_object() {
 		return cnp_queried_object( 'taxonomy', $object->taxonomy, $object->slug, $object->term_id );
 	}
 
-	return cnp_queried_object( 'post_type', $post->post_type, $post->slug, $post->ID );
+	global $post;
+	return cnp_queried_object( 'post_type', $post->post_type, $post->post_name, $post->ID );
 
 }
 
