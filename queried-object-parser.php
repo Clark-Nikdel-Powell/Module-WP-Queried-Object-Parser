@@ -28,7 +28,7 @@ function cnp_parse_queried_object() {
 
 		$args = [
 			'type'   => '404',
-			'object' => '404',
+			'wp_object' => '404',
 			'title'  => 'Page Not Found',
 			'slug'   => '404',
 			'ID'     => 0,
@@ -42,7 +42,7 @@ function cnp_parse_queried_object() {
 
 		$args = [
 			'type'   => 'search',
-			'object' => 'search',
+			'wp_object' => 'search',
 			'title'  => 'Search Results',
 			'slug'   => 'search',
 			'ID'     => 0,
@@ -58,7 +58,7 @@ function cnp_parse_queried_object() {
 
 		$args = [
 			'type'   => 'post_type',
-			'object' => $object->name,
+			'wp_object' => $object->name,
 			'title'  => $object->label,
 			'slug'   => '',
 			'ID'     => 0,
@@ -73,7 +73,7 @@ function cnp_parse_queried_object() {
 
 		$args = [
 			'type'   => 'taxonomy',
-			'object' => $object->taxonomy,
+			'wp_object' => $object->taxonomy,
 			'title'  => $object->name,
 			'slug'   => $object->slug,
 			'ID'     => $object->term_id,
@@ -89,7 +89,7 @@ function cnp_parse_queried_object() {
 
 		$args = [
 			'type'   => 'post_type',
-			'object' => $post->post_type,
+			'wp_object' => $post->post_type,
 			'title'  => $post->post_title,
 			'slug'   => $post->post_name,
 			'ID'     => $post->ID,
@@ -112,7 +112,7 @@ function cnp_queried_object( $args = [ ] ) {
 
 	$queried_array = [
 		'type'      => $args['type'],
-		'wp_object' => $args['object'],
+		'wp_object' => $args['wp_object'],
 		'title'     => $args['title'],
 		'slug'      => $args['slug'],
 		'ID'        => $args['ID'],
