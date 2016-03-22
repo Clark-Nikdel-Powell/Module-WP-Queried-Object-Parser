@@ -22,7 +22,9 @@ $object = cnp_parse_queried_object();
 (stdClass) [
     type      -> '',
     wp_object -> '',
+    title     -> '',
     slug      -> '',
-    ID        -> 0
+    ID        -> 0,
+    view      -> ''
 ]
 ```
