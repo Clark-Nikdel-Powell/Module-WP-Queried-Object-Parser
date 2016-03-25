@@ -15,7 +15,7 @@ function cnp_parse_queried_object() {
 	$object = get_queried_object();
 
 	$view = '';
-	if ( is_archive() ) {
+	if ( is_archive() || is_home() ) {
 		$view = 'archive';
 	}
 	if ( is_singular() ) {
