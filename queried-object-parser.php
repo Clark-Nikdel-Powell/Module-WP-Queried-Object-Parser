@@ -1,15 +1,16 @@
 <?php
+namespace CNP;
 /**
- * cnp_parse_queried_object
+ * parse_queried_object
  *
  * @version 0.4.0 - Dev release.
  *
  * Provides shorthand access to a standard description of the WordPress object being requested.
  */
-function cnp_parse_queried_object() {
+function parse_queried_object() {
 
 	// Set up variables so we don't get an undefined index notice
-	$args = [ ];
+	$args = array();
 
 	// Get the queried object
 	$object = get_queried_object();
@@ -27,29 +28,29 @@ function cnp_parse_queried_object() {
 	if ( is_404() ) {
 
 		$args = [
-			'type'   => '404',
+			'type'      => '404',
 			'wp_object' => '404',
-			'title'  => 'Page Not Found',
-			'slug'   => '404',
-			'ID'     => 0,
-			'view'   => ''
+			'title'     => 'Page Not Found',
+			'slug'      => '404',
+			'ID'        => 0,
+			'view'      => '',
 		];
 
-		return cnp_queried_object( $args );
+		return format_queried_object( $args );
 	}
 
 	if ( is_search() ) {
 
 		$args = [
-			'type'   => 'search',
+			'type'      => 'search',
 			'wp_object' => 'search',
-			'title'  => 'Search Results',
-			'slug'   => 'search',
-			'ID'     => 0,
-			'view'   => ''
+			'title'     => 'Search Results',
+			'slug'      => 'search',
+			'ID'        => 0,
+			'view'      => '',
 		];
 
-		return cnp_queried_object( $args );
+		return format_queried_object( $args );
 	}
 
 	// Post Type Object: comes up when you're viewing a post type archive. NOTE: can be tripped up if you have a
@@ -57,30 +58,30 @@ function cnp_parse_queried_object() {
 	if ( isset( $object->labels ) ) {
 
 		$args = [
-			'type'   => 'post_type',
+			'type'      => 'post_type',
 			'wp_object' => $object->name,
-			'title'  => $object->label,
-			'slug'   => '',
-			'ID'     => 0,
-			'view'   => $view
+			'title'     => $object->label,
+			'slug'      => '',
+			'ID'        => 0,
+			'view'      => $view,
 		];
 
-		return cnp_queried_object( $args );
+		return format_queried_object( $args );
 	}
 
 	// Taxonomy: viewing a taxonomy term
 	if ( isset( $object->taxonomy ) ) {
 
 		$args = [
-			'type'   => 'taxonomy',
+			'type'      => 'taxonomy',
 			'wp_object' => $object->taxonomy,
-			'title'  => $object->name,
-			'slug'   => $object->slug,
-			'ID'     => $object->term_id,
-			'view'   => $view
+			'title'     => $object->name,
+			'slug'      => $object->slug,
+			'ID'        => $object->term_id,
+			'view'      => $view,
 		];
 
-		return cnp_queried_object( $args );
+		return format_queried_object( $args );
 	}
 
 	// Post Objects
@@ -88,27 +89,24 @@ function cnp_parse_queried_object() {
 	if ( ! empty( $post ) ) {
 
 		$args = [
-			'type'   => 'post_type',
+			'type'      => 'post_type',
 			'wp_object' => $post->post_type,
-			'title'  => $post->post_title,
-			'slug'   => $post->post_name,
-			'ID'     => $post->ID,
-			'view'   => $view
+			'title'     => $post->post_title,
+			'slug'      => $post->post_name,
+			'ID'        => $post->ID,
+			'view'      => $view,
 		];
 
-		return cnp_queried_object( $args );
+		return format_queried_object( $args );
 	}
 }
 
 /**
- * @param string $type
- * @param string $object
- * @param string $slug
- * @param int $ID
+ * @param array $args
  *
- * @return object
+ * @return mixed
  */
-function cnp_queried_object( $args = [ ] ) {
+function format_queried_object( $args = array() ) {
 
 	$queried_array = [
 		'type'      => $args['type'],
@@ -116,7 +114,7 @@ function cnp_queried_object( $args = [ ] ) {
 		'title'     => $args['title'],
 		'slug'      => $args['slug'],
 		'ID'        => $args['ID'],
-		'view'      => $args['view']
+		'view'      => $args['view'],
 	];
 
 	$queried_object = apply_filters( 'cnp_queried_object_filter', (object) $queried_array );
